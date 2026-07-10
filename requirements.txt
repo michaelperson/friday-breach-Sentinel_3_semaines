@@ -1,0 +1,12 @@
+# Dépendances — Arc Opération Sentinel
+# Installation : pip install -r requirements.txt
+
+# BDD Framework
+pytest-bdd==7.2.0
+pytest==8.2.0
+
+# Reporting
+pytest-html==4.1.1
+
+# Futur — intégration UI (Épisode 3 / intégration)
+# playwright==1.44.0
