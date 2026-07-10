@@ -1,0 +1,32 @@
+# docker-compose.yml — OptiShop Auth · VERSION VULNÉRABLE
+# The Friday Breach · Arc Opération Sentinel · Semaine #12
+#
+# Usage :
+#   docker compose up           → démarre l'app
+#   docker compose up -d        → démarre en arrière-plan
+#   docker compose down         → arrête et supprime les conteneurs
+#   docker compose logs -f      → logs en temps réel
+#
+# App disponible sur : http://localhost:5000
+
+services:
+  optishop-auth:
+    image: python:3.12-slim
+    container_name: optishop-vulnerable
+    working_dir: /app
+    volumes:
+      - ./app:/app
+    ports:
+      - "5000:5000"
+    command: >
+      sh -c "pip install flask --no-cache-dir -q && python app.py"
+    healthcheck:
+      test: ["CMD", "python", "-c",
+             "import urllib.request; urllib.request.urlopen('http://localhost:5000/health')"]
+      interval: 10s
+      timeout:  5s
+      retries:  3
+      start_period: 15s
+    labels:
+      - "friday-breach=sentinel-s12"
+      - "environment=training-only"
